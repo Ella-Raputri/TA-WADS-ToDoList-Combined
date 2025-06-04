@@ -45,10 +45,10 @@ export const TodoWrapper = () => {
 
     const toggleComplete = async (id) => {
         try{
-            const todo = toDos.find(todo => todo.id === id);
+            const todo = toDos.find(todo => todo._id === id);
             const updated = { completed: !todo.completed };
             const res = await axios.put(`${API_BASE_URL}/api/task/updateTask/${id}`, updated, { withCredentials: true });
-            setToDos(toDos.map(t => t.id === id ? res.data.task : t));
+            setToDos(toDos.map(t => t._id === id ? res.data.task : t));
             toast.success("Task status updated.");
         }
         catch(err){
@@ -62,7 +62,7 @@ export const TodoWrapper = () => {
         if (confirm) {
             try{
                 await axios.delete(`${API_BASE_URL}/api/task/deleteTask/${id}`, { withCredentials: true });
-                setToDos(toDos.filter(todo => todo.id !== id));
+                setToDos(toDos.filter(todo => todo._id !== id));
                 toast.success("Task deleted successfully!");
             }
             catch(err){
@@ -73,7 +73,7 @@ export const TodoWrapper = () => {
     }
 
     const editToDo = id => {
-        setToDos(toDos.map(todo => todo.id === id ? { ...todo, isEditing: !todo.isEditing } : todo));
+        setToDos(toDos.map(todo => todo._id === id ? { ...todo, isEditing: !todo.isEditing } : todo));
     }
 
     const editTask = async (id, updatedValue) => {
@@ -82,7 +82,7 @@ export const TodoWrapper = () => {
                 todo: updatedValue,
                 isEditing: false
             }, { withCredentials: true });
-            setToDos(toDos.map(todo => todo.id === id ? res.data.task : todo));
+            setToDos(toDos.map(todo => todo._id === id ? res.data.task : todo));
             toast.success("Task edited successfully!");
         }
         catch(err){
@@ -102,7 +102,7 @@ export const TodoWrapper = () => {
     const handleToggle = (todoId) => {
         setToDos(prevToDos =>
             prevToDos.map(todo =>
-                todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
+                todo._id === todoId ? { ...todo, completed: !todo.completed } : todo
             )
         );
     };
@@ -123,7 +123,7 @@ export const TodoWrapper = () => {
                 <div className="mt-4 h-96 overflow-y-auto px-6 md:px-12">
                     {filteredTasks.map((todo) => (
                         todo.isEditing ? (
-                            <EditTodoForm editToDo={editTask} task={todo} key={todo.id} />
+                            <EditTodoForm editToDo={editTask} task={todo} key={todo._id} />
                         ) : (
                             <ToDo
                                 task={todo}
@@ -131,7 +131,7 @@ export const TodoWrapper = () => {
                                 deleteToDo={deleteToDo}
                                 editToDo={editToDo}
                                 onToggle={handleToggle}
-                                key={todo.id}
+                                key={todo._id}
                             />
                         )
                     ))}

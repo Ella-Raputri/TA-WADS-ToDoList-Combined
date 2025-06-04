@@ -11,11 +11,11 @@ export const ToDo = ({ task, toggleComplete, deleteToDo, editToDo }) => {
                 <input
                     type="checkbox"
                     checked={task.completed}
-                    onChange={() => toggleComplete(task.id)}
+                    onChange={() => toggleComplete(task._id)}
                     className="peer accent-indigo-500 h-5 w-4"
-                    id={`todo-${task.id}`}
+                    id={`todo-${task._id}`}
                 />
-                <label htmlFor={`todo-${task.id}`} className="cursor-pointer peer-checked:line-through peer-checked:text-gray-500">
+                <label htmlFor={`todo-${task._id}`} className="cursor-pointer peer-checked:line-through peer-checked:text-gray-500">
                     {task.todo}
                 </label>
             </div>
@@ -24,12 +24,12 @@ export const ToDo = ({ task, toggleComplete, deleteToDo, editToDo }) => {
                 <FontAwesomeIcon
                     icon={faPenToSquare}
                     className="cursor-pointer text-indigo-400 hover:text-indigo-500"
-                    onClick={() => editToDo(task.id)}
+                    onClick={() => editToDo(task._id)}
                 />
                 <FontAwesomeIcon
                     icon={faTrash}
                     className="cursor-pointer text-gray-400 hover:text-gray-500"
-                    onClick={() => deleteToDo(task.id)}
+                    onClick={() => deleteToDo(task._id)}
                 />
             </div>
         </div>
