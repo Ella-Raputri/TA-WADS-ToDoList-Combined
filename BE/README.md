@@ -6,7 +6,7 @@
 <br>
 
 ## Project Description
-This is a simple to do list app backend used for my practice in using Express and Sequelize for MySQL.
+This is a simple to do list app backend used for my practice in using Express and Mongoose for MongoDB.
 
 <br>
 
@@ -14,7 +14,6 @@ This is a simple to do list app backend used for my practice in using Express an
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [Git](https://git-scm.com/)
-- [MySQL](https://dev.mysql.com/downloads/mysql/)
 
 <br>
 
@@ -32,21 +31,9 @@ npm install
 ```
 <br>
 
-### 3. Setup Local MySQL Database
-#### 1). Log into MySQL by using this command in terminal or using GUI (For me, I use the GUI MySQL Workbench)
+### 3. Add the database credentials to the .env file
 ```sh
-mysql -u root -p
-```
-#### 2). Create a new database named todolist_ella
-```sh
-CREATE DATABASE todolist_ella;
-```
-#### 3). Add the credentials to the .env file
-```sh
-DB_HOST= localhost             
-DB_USERNAME= root    
-DB_PASSWORD= <your password>    
-DB_NAME= todolist_ella
+MONGODB_URI=<link>
 ```
 <br>
 

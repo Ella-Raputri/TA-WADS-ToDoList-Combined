@@ -1,12 +1,7 @@
-# Simple To Do List App
+# Simple To Do List App Frontend
 <br>
 
 **Name:** Ella Raputri (2702298154)
-
-<br>
-
-## Project Description
-This is a simple to do list app used for my practice in using React, Vite, and Axios to connect with the backend.
 
 <br>
 
@@ -14,7 +9,6 @@ This is a simple to do list app used for my practice in using React, Vite, and A
 Before you begin, ensure you have the following installed:
 - [Node.js](https://nodejs.org/) (LTS version recommended)
 - [Git](https://git-scm.com/)
-- [Docker](https://www.docker.com/) (if using Docker setup)
 
 <br>
 
@@ -37,35 +31,6 @@ npm run dev
 Vite will start a local development server and provide a URL (usually `http://localhost:5173/`).
 Now, you can preview this simple to do list app. If you want to pull the images from Docker hub instead, you can choose the below configuration.
 
-<br>
-
-## Docker Setup
-You can view the Docker image in the Docker Hub: [ellaraputri/todo-app:v1.0](https://hub.docker.com/r/ellaraputri/todo-app/tags). 
-### 1. Pull the Docker Image
-```sh
-docker pull ellaraputri/todo-app:v1.0
-```
-
-### 2. Run the Container
-```sh
-docker run -p 5173:5173 -d ellaraputri/todo-app:v1.0
-```
-
-### 3. Access the Application
-```sh
-http://localhost:5173/
-```
-Now, you can preview this simple to do list app.
-
-### 4. Stop the Docker Container
-First, find the container ID
-```sh
-docker ps
-```
-Then, stop the container using its ID
-```sh
-docker stop <container_id>
-```
 
 <br>
 
