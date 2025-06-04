@@ -1,44 +1,28 @@
-import { DataTypes } from 'sequelize';
-import { sequelize } from '../config/db.js';
-import User from './User.js'; 
+import mongoose from 'mongoose';
 
-const Task = sequelize.define('Task', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
+const taskSchema = new mongoose.Schema({
     todo: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
+        type: String,
+        required: true,
+        maxlength: 255,
     },
     completed: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+        type: Boolean,
+        default: false,
+        required: true,
     },
     isEditing: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-        defaultValue: false,
+        type: Boolean,
+        default: false,
+        required: true,
     },
     userId: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: User,
-            key: 'id',
-        },
-        onDelete: 'CASCADE', 
-    },
-    }, {
-    tableName: 'Tasks',
-    timestamps: true,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: true,
+    }
+}, {
+    timestamps: true 
 });
 
-
-User.hasMany(Task, { foreignKey: 'userId' });
-Task.belongsTo(User, { foreignKey: 'userId' });
-
-
-export default Task;
+export default mongoose.model('Task', taskSchema);

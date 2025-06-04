@@ -21,7 +21,7 @@ export const createTask = async (req, res) => {
   export const getTasks = async (req, res) => {
     const userId = req.userId; 
     try {
-      const tasks = await Task.findAll({ where: { userId } });
+      const tasks = await Task.find({ userId });
       return res.status(200).json({ success: true, tasks: tasks });
     } 
     catch (error) {
@@ -36,7 +36,7 @@ export const createTask = async (req, res) => {
     const { todo, completed, isEditing } = req.body;
   
     try {
-      const task = await Task.findOne({ where: { id, userId } });
+      const task = await Task.findOne({ _id: id, userId });
   
       if (!task) {
         return res.status(404).json({ success: false, message: 'Task not found' });
@@ -60,13 +60,13 @@ export const createTask = async (req, res) => {
     const { id } = req.params;
   
     try {
-      const task = await Task.findOne({ where: { id, userId } });
+      const task = await Task.findOne({ _id: id, userId });
   
       if (!task) {
         return res.status(404).json({ success: false, message: 'Task not found' });
       }
   
-      await task.destroy();
+      await task.deleteOne();
       return res.status(200).json({ success: true, message: 'Task deleted successfully' });
     } 
     catch (error) {

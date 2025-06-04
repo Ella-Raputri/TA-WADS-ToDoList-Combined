@@ -25,7 +25,7 @@ export const register = async (req, res) => {
     }
 
     try {
-        const existingUser = await User.findOne({ where: { email } });
+        const existingUser = await User.findOne({ email });
         if (existingUser) {
             return res.status(400).json({ success: false, message: "User already exists" });
         }
@@ -57,7 +57,7 @@ export const login = async(req,res)=>{
     }
 
     try {
-        const user = await User.findOne({ where: { email } });
+        const user = await User.findOne({ email });
         if(!user || user.isDeleted){
             return res.status(401).json({success:false, message:'Invalid credentials'})
         }
@@ -93,7 +93,7 @@ export const logout = async (req, res) => {
 export const getCurrentUser = async (req, res) => {
     try { 
         const userId = req.userId;  
-        const user = await User.findByPk(userId);
+        const user = await User.findById(userId);
     
         if (!user || user.isDeleted) {
             return res.status(404).json({ success: false, message: "User not found" });
@@ -120,7 +120,7 @@ export const updateCurrentUser = async (req, res) => {
         const userId = req.userId;
         const { name, bio, propic } = req.body;
   
-        const user = await User.findByPk(userId);
+        const user = await User.findById(userId);
     
         if (!user || user.isDeleted) {
             return res.status(404).json({ success: false, message: "User not found" });
